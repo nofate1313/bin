@@ -1,4 +1,8 @@
-var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_-+={}[];:,.<>?'; function genpw(alphabet, length){
+var segments = process.argv[2] || 8;
+var segmentSize = process.argv[3] || 4;
+var characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_-+={}[];:,.<>?';
+
+function genpw(alphabet, length){
   var password = '';
   for (var i=0; i<length; i++) {
     var index = Math.floor(Math.random() * alphabet.length);
@@ -6,7 +10,9 @@ var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$
   }
   return password;
 }
-var pw = ''; for (var i=0; i<8; i++) {
-  pw += genpw(chars, 4) + ' ';
+
+var pw = '';
+for (var i=0; i < segments; i++) {
+  pw += genpw(characters, segmentSize) + ' ';
 }
 console.log(pw);
